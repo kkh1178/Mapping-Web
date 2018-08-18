@@ -32,15 +32,24 @@ function markerSize(marker) {
     return marker * 20000;
 }
 
-function colors(data) {
+function colors(d) {
     // let color = 'purple';
     // if (data >= 4) {
     //     color = "red";
     // }
 
     // return color;
-    return data >= 4 ? "red" : "green";
+    // return data >= 4 ? "red" : "green";
+
+    return d > 7 ? '#800026' :
+        d > 6 ? '#BD0026' :
+        d > 5 ? '#E31A1C' :
+        d > 4 ? '#FC4E2A' :
+        d > 3 ? '#FD8D3C' :
+        d > 2 ? '#FEB24C' :
+        d > 1 ? '#FED976' :'#FFEDA0';
 };
+
 
 // Perform a GET request to the query URL
 d3.json(link, data => {
@@ -70,6 +79,25 @@ d3.json(link, data => {
 
 });
 
+var legend = L.control({position: 'bottomright'});
+
+legend.onAdd = function (map) {
+
+    var div = L.DomUtil.create('div', 'info legend'),
+        magnitudes = [0, 1, 2, 3, 4, 5, 6, 7],
+        labels = [];
+
+    // loop through our density intervals and generate a label with a colored square for each interval
+    for (var i = 0; i < magnitudes.length; i++) {
+        div.innerHTML +=
+            '<i style="background:' + colors(magnitudes[i] + 1) + '"></i> ' +
+            magnitudes[i] + (magnitudes[i + 1] ? '&ndash;' + magnitudes[i + 1] + '<br>' : '+');
+    }
+
+    return div;
+};
+
+legend.addTo(map);
 
 // // Loop through the cities array and create one marker for each city object
 // for (var i = 0; i < cities.length; i++) {
