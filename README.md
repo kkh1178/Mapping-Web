@@ -6,6 +6,6 @@
 
 ![earthquake map with legend](earthquake_legend.png)
 
-![earthquake map 2](earthquake.png)
+![earthquake map 3](earthquake3.png)
 
 
