@@ -2,7 +2,7 @@
 
 ## Background
 
- Visualize an earthquake data that is constantly being updated.
+ Visualize an earthquake data set from USGS. The data set is constantly being updated to include new events. 
 
 ![earthquake map with legend](earthquake_legend.png)
 
